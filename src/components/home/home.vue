@@ -1,22 +1,47 @@
 <template>
   <div id="home">
     <daily-header :title="title"></daily-header>
-    <p>我是轮播图</p>
+    <cycle-image :top_stories="top_stories"></cycle-image>
     <p>我是一条条数据</p>
   </div>
 </template>
 
 <script>
   import DailyHeader from '@/components/daily-header/daily-header'
+  import CycleImage from '@/components/cycle-image/cycle-image'
+  import { URLs } from 'api/api.js'
+
   export default {
     name: 'home',
     components: {
-      DailyHeader
+      DailyHeader,
+      CycleImage
     },
     data () {
       return {
-        title: '今日要闻'
+        title: '今日要闻',
+        stories: [],
+        top_stories: []
       }
+    },
+    methods: {
+      getHomeNews: function () {
+        this.$request({
+          type: 'get',
+          url: URLs.newsURL,
+          success: function (res) {
+            this.top_stories = res.data.top_stories
+            this.stories = res.data.stories
+          },
+          error: function (res) {
+            console.log(res)
+          }
+        })
+      }
+    },
+    mounted () {
+      console.log('挂载')
+      this.getHomeNews()
     }
   }
 </script>
