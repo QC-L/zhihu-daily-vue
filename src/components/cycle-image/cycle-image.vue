@@ -22,7 +22,7 @@
 
   .cycle-image
     width: 100%
-    height: 280px
+    height: 240px
   .mt-swipe-item
     width: 100%
     height: auto
