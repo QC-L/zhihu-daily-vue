@@ -2,20 +2,22 @@
   <div id="home">
     <daily-header :title="title"></daily-header>
     <cycle-image :top_stories="top_stories"></cycle-image>
-    <p>我是一条条数据</p>
+    <list-view :stories="stories"></list-view>
   </div>
 </template>
 
 <script>
   import DailyHeader from '@/components/daily-header/daily-header'
   import CycleImage from '@/components/cycle-image/cycle-image'
+  import ListView from '@/components/list-view/list-view'
   import { URLs } from 'api/api.js'
 
   export default {
     name: 'home',
     components: {
       DailyHeader,
-      CycleImage
+      CycleImage,
+      ListView
     },
     data () {
       return {
@@ -46,6 +48,6 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="stylus" rel="stylesheet/stylus">
 
 </style>

@@ -17,8 +17,12 @@
   @import "~common/stylus/mixin"
 
   .daily-header
-    position: relative
+    z-index: 99
+    position: fixed
+    left: 0
+    top: 0
     text-align: center
+    width: 100%
     height: 44px
     background: $color-theme
     color: $color-title

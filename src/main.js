@@ -2,7 +2,7 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import FastClick from 'fastclick'
-import { Swipe, SwipeItem } from 'mint-ui'
+import { Swipe, SwipeItem, Cell } from 'mint-ui'
 
 import router from './router'
 import store from './store'
@@ -14,6 +14,7 @@ FastClick.attach(document.body)
 
 Vue.component(Swipe.name, Swipe)
 Vue.component(SwipeItem.name, SwipeItem)
+Vue.component(Cell.name, Cell)
 requestService(Vue)
 
 /* eslint-disable no-new */
