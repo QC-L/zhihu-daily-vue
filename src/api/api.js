@@ -3,7 +3,8 @@
  */
 
 var URLs = {
-  newsURL: '/api/4/news/latest'
+  newsURL: '/api/4/news/latest',
+  newsDetailURL: '/api/4/news/'
 }
 
 export { URLs }

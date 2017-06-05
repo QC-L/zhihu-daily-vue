@@ -42,7 +42,6 @@
       }
     },
     mounted () {
-      console.log('挂载')
       this.getHomeNews()
     }
   }
