@@ -23,6 +23,7 @@
   .cycle-image
     width: 100%
     height: 240px
+    text-align: center
   .mt-swipe-item
     width: 100%
     height: auto
