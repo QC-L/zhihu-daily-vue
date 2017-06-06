@@ -35,23 +35,16 @@
         var imgPlaceholder = body.getElementsByClassName('img-place-holder')
         imgPlaceholder[0].style.background = `url('${this.image}') center center`
         imgPlaceholder[0].style.backgroundSize = 'cover'
-        imgPlaceholder[0].style.display = 'table-cell'
-        imgPlaceholder[0].style.verticalAlign = 'bottom'
-        imgPlaceholder[0].style.textAlign = 'center'
+        imgPlaceholder[0].style.position = 'relative'
         return imgPlaceholder[0]
-      },
-      getBackgroundColorDiv () {
-        var div = document.createElement('div')
-        div.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
-        div.style.width = '100%'
-        div.style.height = '100%'
-        return div
       },
       createP () {
         var p = document.createElement('p')
         p.textContent = this.title
         p.style.color = '#fff'
         p.style.fontSize = '22px'
+        p.style.position = 'absolute'
+        p.style.bottom = 0
         return p
       },
       getNewsDetail () {
