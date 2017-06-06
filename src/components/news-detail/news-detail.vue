@@ -22,6 +22,8 @@
         var p = this.createP()
         var imgPlaceholder = this.getImgPlaceHolder(body)
         imgPlaceholder.appendChild(p)
+        var div = this.getBackgroundDiv()
+        imgPlaceholder.appendChild(div)
         return body.innerHTML
       }
     },
@@ -38,14 +40,25 @@
         imgPlaceholder[0].style.position = 'relative'
         return imgPlaceholder[0]
       },
+      getBackgroundDiv () {
+        var div = document.createElement('div')
+        div.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+        div.style.width = '100%'
+        div.style.height = '100%'
+        return div
+      },
       createP () {
+        var div = document.createElement('div')
+        div.style.position = 'absolute'
+        div.style.bottom = '10px'
+        div.style.paddingLeft = '10px'
+        div.style.paddingRight = '10px'
         var p = document.createElement('p')
         p.textContent = this.title
         p.style.color = '#fff'
         p.style.fontSize = '22px'
-        p.style.position = 'absolute'
-        p.style.bottom = 0
-        return p
+        div.appendChild(p)
+        return div
       },
       getNewsDetail () {
         this.$request({
