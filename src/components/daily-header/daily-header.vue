@@ -1,7 +1,7 @@
 <template>
   <div class="daily-header">
     <div class="menu"></div>
-    <h1 class="text">{{title}}</h1>
+    <span class="text">{{title}}</span>
   </div>
 </template>
 
@@ -21,6 +21,8 @@
     position: fixed
     left: 0
     top: 0
+    bottom: 0
+    right: 0
     text-align: center
     width: 100%
     height: 44px
