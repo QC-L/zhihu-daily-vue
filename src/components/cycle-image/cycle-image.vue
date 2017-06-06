@@ -3,7 +3,7 @@
     <mt-swipe style="width: 100%; height: 100%">
       <mt-swipe-item v-for="(top, index) in top_stories" :style="{background: 'url(' + top.image + ') no-repeat center center', 'background-size': 'cover'}" :key="index">
         <div class="mask"></div>
-        <h1>{{top.title}}</h1>
+        <p>{{top.title}}</p>
       </mt-swipe-item>
     </mt-swipe>
   </div>
@@ -32,7 +32,7 @@
     width: 100%
     height: 100%
     background: rgba(0, 0, 0, 0.4)
-  h1
+  p
     color: $color-title
     bottom: 30px
     position: absolute
