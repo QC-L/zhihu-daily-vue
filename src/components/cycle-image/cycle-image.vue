@@ -1,6 +1,6 @@
 <template>
   <div class="cycle-image">
-    <mt-swipe style="width: 100%; height: 100%">
+    <mt-swipe style="width: 100%; height: 100%" :auto="5000">
       <mt-swipe-item v-for="(top, index) in top_stories" :style="{background: 'url(' + top.image + ') no-repeat center center', 'background-size': 'cover'}" :key="index">
         <div class="mask"></div>
         <div class="titleBackground">

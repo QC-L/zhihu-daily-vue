@@ -2,7 +2,9 @@
   <div id="home">
     <daily-header :title="title"></daily-header>
     <cycle-image :top_stories="top_stories"></cycle-image>
-    <list-view :stories="stories"></list-view>
+    <list-view v-scroll="getHomeBeforeNews"
+               :stories="stories"
+               :pause-scroll-trigger="pauseScrollTrigger"></list-view>
   </div>
 </template>
 
@@ -25,6 +27,7 @@
         title: '今日要闻',
         stories: [],
         top_stories: [],
+        pauseScrollTrigger: false,
         times: 1
       }
     },
@@ -43,12 +46,14 @@
         })
       },
       getHomeBeforeNews: function () {
+        this.pauseScrollTrigger = true
         this.$request({
           type: 'get',
           url: URLs.beforeNewsURL + this.getBeforeDate(this.times),
           success: function (res) {
             this.stories = this.stories.concat(res.data.stories)
             this.times++
+            this.pauseScrollTrigger = false
           },
           error: function (res) {
             console.log(res)
@@ -59,14 +64,12 @@
         var date = new Date()
         console.log(date.getTime())
         var time = date.getTime() - 24 * 60 * 60 * 1000 * times
-        console.log(time)
         var finalDate = Dateformat(time, 'yyyymmdd')
         return finalDate
       }
     },
     mounted () {
       this.getHomeNews()
-      console.log(this.getBeforeDate(1))
     }
   }
 </script>
