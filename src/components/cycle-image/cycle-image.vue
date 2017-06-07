@@ -3,7 +3,9 @@
     <mt-swipe style="width: 100%; height: 100%">
       <mt-swipe-item v-for="(top, index) in top_stories" :style="{background: 'url(' + top.image + ') no-repeat center center', 'background-size': 'cover'}" :key="index">
         <div class="mask"></div>
-        <p>{{top.title}}</p>
+        <div class="titleBackground">
+          <p>{{top.title}}</p>
+        </div>
       </mt-swipe-item>
     </mt-swipe>
   </div>
@@ -23,20 +25,22 @@
   .cycle-image
     width: 100%
     height: 240px
-    text-align: center
   .mt-swipe-item
     width: 100%
     height: auto
     max-height: 100%
+    position: relative
   .mask
     width: 100%
     height: 100%
     background: rgba(0, 0, 0, 0.4)
+  .titleBackground
+    position: absolute
+    bottom: 30px
+    height: auto
+    padding-left: 10px
+    padding-right: -10px
   p
     color: $color-title
-    bottom: 30px
-    position: absolute
-    width: 100%
-    height: auto
     font-size: $font-size-title
 </style>
