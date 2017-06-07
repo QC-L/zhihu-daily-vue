@@ -39,7 +39,7 @@
     bottom: 30px
     height: auto
     padding-left: 10px
-    padding-right: -10px
+    padding-right: 10px
   p
     color: $color-title
     font-size: $font-size-title

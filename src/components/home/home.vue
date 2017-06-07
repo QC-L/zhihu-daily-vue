@@ -7,6 +7,7 @@
 </template>
 
 <script>
+  import Dateformat from 'dateformat'
   import DailyHeader from '@/components/daily-header/daily-header'
   import CycleImage from '@/components/cycle-image/cycle-image'
   import ListView from '@/components/list-view/list-view'
@@ -23,7 +24,8 @@
       return {
         title: '今日要闻',
         stories: [],
-        top_stories: []
+        top_stories: [],
+        times: 1
       }
     },
     methods: {
@@ -39,10 +41,32 @@
             console.log(res)
           }
         })
+      },
+      getHomeBeforeNews: function () {
+        this.$request({
+          type: 'get',
+          url: URLs.beforeNewsURL + this.getBeforeDate(this.times),
+          success: function (res) {
+            this.stories = this.stories.concat(res.data.stories)
+            this.times++
+          },
+          error: function (res) {
+            console.log(res)
+          }
+        })
+      },
+      getBeforeDate: function (times) {
+        var date = new Date()
+        console.log(date.getTime())
+        var time = date.getTime() - 24 * 60 * 60 * 1000 * times
+        console.log(time)
+        var finalDate = Dateformat(time, 'yyyymmdd')
+        return finalDate
       }
     },
     mounted () {
       this.getHomeNews()
+      console.log(this.getBeforeDate(1))
     }
   }
 </script>

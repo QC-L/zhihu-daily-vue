@@ -4,7 +4,6 @@
              :title="story.title"
              :key="story.id"
              :to="'/news/' + story.id">
-      <!--<img :src="story.images[0]"/>-->
       <div class="image"
            :style="{background: 'url(' + story.images[0] + ') no-repeat center center', 'background-size': 'cover'}"></div>
     </mt-cell>
