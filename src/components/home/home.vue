@@ -4,11 +4,13 @@
     <cycle-image :top_stories="top_stories"></cycle-image>
     <list-view v-scroll="getHomeBeforeNews"
                :stories="stories"
+               :allStories="allStories"
                :pause-scroll-trigger="pauseScrollTrigger"></list-view>
   </div>
 </template>
 
 <script>
+  import Moment from 'moment'
   import Dateformat from 'dateformat'
   import DailyHeader from '@/components/daily-header/daily-header'
   import CycleImage from '@/components/cycle-image/cycle-image'
@@ -41,9 +43,9 @@
           success: function (res) {
             this.top_stories = res.data.top_stories
             this.stories = res.data.stories
-            var date = this.getBeforeDate(0)
+            var title = this.getBeforeDateFormatTitle(0)
             this.allStories = [{
-              title: date,
+              title: title,
               array: res.data.stories
             }]
           },
@@ -55,10 +57,11 @@
       // 请求历史新闻
       getHomeBeforeNews: function () {
         this.pauseScrollTrigger = true
-        var title = this.getBeforeDate(this.times)
+        var url = this.getBeforeDateFormat(this.times)
+        var title = this.getBeforeDateFormatTitle(this.times)
         this.$request({
           type: 'get',
-          url: URLs.beforeNewsURL + title,
+          url: URLs.beforeNewsURL + url,
           success: function (res) {
             var obj = {
               title: title,
@@ -79,8 +82,19 @@
         var date = new Date()
         // 根据当前日期生成历史日期
         var time = date.getTime() - 24 * 60 * 60 * 1000 * times
+        return time
+      },
+      getBeforeDateFormat: function (times) {
+        var time = this.getBeforeDate(times)
         var finalDate = Dateformat(time, 'yyyymmdd')
         return finalDate
+      },
+      getBeforeDateFormatTitle: function (times) {
+        var time = this.getBeforeDate(times)
+//        var finalDateTitle = Dateformat(time, 'mm月dd日 dddd')
+        Moment.locale('zh-cn')
+        var finalDateTitle = Moment(time).format('MMM Do dddd')
+        return finalDateTitle
       }
     },
     mounted () {
