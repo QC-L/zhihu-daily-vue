@@ -28,7 +28,8 @@
         stories: [],
         top_stories: [],
         pauseScrollTrigger: false,
-        times: 1
+        times: 1,
+        allStories: []
       }
     },
     methods: {
@@ -40,6 +41,11 @@
           success: function (res) {
             this.top_stories = res.data.top_stories
             this.stories = res.data.stories
+            var date = this.getBeforeDate(0)
+            this.allStories = [{
+              title: date,
+              array: res.data.stories
+            }]
           },
           error: function (res) {
             console.log(res)
@@ -49,11 +55,17 @@
       // 请求历史新闻
       getHomeBeforeNews: function () {
         this.pauseScrollTrigger = true
+        var title = this.getBeforeDate(this.times)
         this.$request({
           type: 'get',
-          url: URLs.beforeNewsURL + this.getBeforeDate(this.times),
+          url: URLs.beforeNewsURL + title,
           success: function (res) {
+            var obj = {
+              title: title,
+              array: res.data.stories
+            }
             this.stories = this.stories.concat(res.data.stories)
+            this.allStories = this.allStories.concat(obj)
             this.times++
             this.pauseScrollTrigger = false
           },
