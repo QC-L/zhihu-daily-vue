@@ -32,6 +32,7 @@
       }
     },
     methods: {
+      // 请求最新新闻
       getHomeNews: function () {
         this.$request({
           type: 'get',
@@ -45,6 +46,7 @@
           }
         })
       },
+      // 请求历史新闻
       getHomeBeforeNews: function () {
         this.pauseScrollTrigger = true
         this.$request({
@@ -60,9 +62,10 @@
           }
         })
       },
+      // 获取历史时间
       getBeforeDate: function (times) {
         var date = new Date()
-        console.log(date.getTime())
+        // 根据当前日期生成历史日期
         var time = date.getTime() - 24 * 60 * 60 * 1000 * times
         var finalDate = Dateformat(time, 'yyyymmdd')
         return finalDate
