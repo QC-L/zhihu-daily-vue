@@ -17,6 +17,8 @@
   import ListView from '@/components/list-view/list-view'
   import { URLs } from 'api/api.js'
 
+  Moment.locale('zh-cn')
+
   export default {
     name: 'home',
     components: {
@@ -91,9 +93,7 @@
       },
       getBeforeDateFormatTitle: function (times) {
         var time = this.getBeforeDate(times)
-//        var finalDateTitle = Dateformat(time, 'mm月dd日 dddd')
-        Moment.locale('zh-cn')
-        var finalDateTitle = Moment(time).format('MMM Do dddd')
+        var finalDateTitle = Moment(time).format('MM月DD日 dddd')
         return finalDateTitle
       }
     },
