@@ -16,11 +16,41 @@
 </template>
 
 <script>
-  import MtCell from '../../../node_modules/mint-ui/packages/cell/src/cell'
   export default {
-    components: {MtCell},
     name: 'list-view',
-    props: ['stories', 'allStories']
+    props: ['stories', 'allStories'],
+    data () {
+      return {
+        scroll: '',
+        sectionTitleArray: [],
+        title: ''
+      }
+    },
+    methods: {
+      menu () {
+        this.scroll = document.body.scrollTop
+        console.log(this.scroll)
+        if (this.sectionTitleArray.length !== 0) {
+          var domDivTitle = this.sectionTitleArray[this.sectionTitleArray.length - 1]
+          console.log(domDivTitle.offsetTop)
+          if (this.scroll >= domDivTitle.offsetTop) {
+            var textContent = domDivTitle.textContent
+            this.title = textContent
+            this.$emit('change-title', this.title)
+          } else {
+            if (this.title.length === 0) this.title = '今日要闻'
+            this.$emit('change-title', this.title)
+          }
+        }
+      }
+    },
+    mounted () {
+      console.log(this.$el)
+      window.addEventListener('scroll', this.menu)
+    },
+    updated () {
+      this.sectionTitleArray = this.$el.getElementsByClassName('section-title')
+    }
   }
 </script>
 

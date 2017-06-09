@@ -1,4 +1,4 @@
-# zhihu-daily
+# 知乎日报-Vue
 
 > A Vue.js project
 

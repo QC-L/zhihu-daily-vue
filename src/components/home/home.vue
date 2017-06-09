@@ -5,7 +5,8 @@
     <list-view v-scroll="getHomeBeforeNews"
                :stories="stories"
                :allStories="allStories"
-               :pause-scroll-trigger="pauseScrollTrigger"></list-view>
+               :pause-scroll-trigger="pauseScrollTrigger"
+               v-on:change-title="changeTitle"></list-view>
   </div>
 </template>
 
@@ -86,15 +87,20 @@
         var time = date.getTime() - 24 * 60 * 60 * 1000 * times
         return time
       },
+      // 获取历史时间
       getBeforeDateFormat: function (times) {
         var time = this.getBeforeDate(times)
         var finalDate = Dateformat(time, 'yyyymmdd')
         return finalDate
       },
+      // 获取历史时间标题
       getBeforeDateFormatTitle: function (times) {
         var time = this.getBeforeDate(times)
         var finalDateTitle = Moment(time).format('MM月DD日 dddd')
         return finalDateTitle
+      },
+      changeTitle: function (title) {
+        this.title = title
       }
     },
     mounted () {
