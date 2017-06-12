@@ -1,8 +1,8 @@
 <template>
   <div class="cycle-image">
     <mt-swipe style="width: 100%; height: 100%" :auto="5000">
-      <mt-swipe-item v-for="(top, index) in top_stories" :style="{background: 'url(' + top.image + ') no-repeat center center', 'background-size': 'cover'}" :key="index">
-        <div class="mask"></div>
+      <mt-swipe-item v-for="(top, index) in top_stories" :style="{background: 'url(' + top.image + ') no-repeat center center', 'background-size': 'cover'}" :key="index" >
+        <button class="mask" @click="clickedItem(top)"></button>
         <div class="titleBackground">
           <p>{{top.title}}</p>
         </div>
@@ -14,7 +14,13 @@
 <script>
   export default {
     name: 'cycle-image',
-    props: ['top_stories']
+    props: ['top_stories'],
+    methods: {
+      clickedItem: function (top) {
+        console.log(top)
+        this.$router.push(`/news/${top.id}`)
+      }
+    }
   }
 </script>
 
