@@ -1,5 +1,6 @@
 # 知乎日报-Vue
-
+![](http://od88oby20.bkt.clouddn.com/Snip20170614_1.png)
+[Demo地址](http://zhihu-daily.com:8080/#/)
 > A Vue.js project
 
 ## Build Setup
