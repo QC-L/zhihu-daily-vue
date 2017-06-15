@@ -1,6 +1,8 @@
 <template>
   <div class="daily-header">
-    <div class="menu"></div>
+    <div class="menu">
+      <button @click="clickedMenu"></button>
+    </div>
     <span class="text">{{title}}</span>
   </div>
 </template>
@@ -8,7 +10,12 @@
 <script>
   export default {
     name: 'daily-header',
-    props: ['title']
+    props: ['title'],
+    methods: {
+      clickedMenu: function () {
+        this.$emit('click')
+      }
+    }
   }
 </script>
 

@@ -1,12 +1,12 @@
 <template>
   <div id="home">
-    <daily-header :title="title"></daily-header>
+    <daily-header :title="title" @click="drawerMenu"></daily-header>
     <cycle-image :top_stories="top_stories"></cycle-image>
     <list-view v-scroll="getHomeBeforeNews"
                :stories="stories"
                :allStories="allStories"
                :pause-scroll-trigger="pauseScrollTrigger"
-               v-on:change-title="changeTitle"></list-view>
+               @change-title="changeTitle"></list-view>
   </div>
 </template>
 
@@ -34,10 +34,15 @@
         top_stories: [],
         pauseScrollTrigger: false,
         times: 1,
-        allStories: []
+        allStories: [],
+        isOpen: false
       }
     },
     methods: {
+      drawerMenu: function () {
+        console.log(!this.isOpen ? '打开' : '关闭')
+        this.isOpen = !this.isOpen
+      },
       // 请求最新新闻
       getHomeNews: function () {
         this.$request({
